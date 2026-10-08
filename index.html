@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>患者様の声を募集しています</title>
+<style>
+  :root {
+    --beige: #DDD7AA;
+    --beige-light: #E8E3BF;
+    --gray: #6b6b6b;
+    --brown: #6B3A0E;
+    --ink: #2b2b2b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #DDD7AA; cursor: none; }
+  .stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; background: var(--beige); }
+  body {
+    background: var(--beige);
+    font-family: "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--ink);
+    position: relative;
+  }
+
+  /* 左上：写真＋見出し */
+  .hero {
+    position: absolute; left: 0; top: 0; width: 1110px; height: 520px;
+    background: url("assets/photo.jpg") left center / cover no-repeat;
+  }
+  .hero::after {           /* 下端をベージュになじませる */
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px;
+    background: linear-gradient(to bottom, rgba(221,215,170,0), var(--beige));
+  }
+  .hero::before {          /* 右端を右側の地になじませる */
+    content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 80px;
+    background: linear-gradient(to right, rgba(221,215,170,0), var(--beige));
+    z-index: 1;
+  }
+  .title {
+    position: absolute; right: 70px; top: 92px; z-index: 2;
+    text-align: right;
+    font-weight: 700; font-size: 104px; line-height: 1.22; letter-spacing: 0.02em;
+    color: var(--gray);
+    text-shadow: 0 0 10px #fff, 0 0 18px #fff, 0 0 28px #fff, 0 0 40px rgba(255,255,255,.9);
+  }
+
+  /* 左下：本文 */
+  .message {
+    position: absolute; left: 0; top: 528px; width: 1110px;
+    text-align: center;
+    font-family: "Yu Mincho", "YuMincho", serif; font-weight: 500;
+    font-size: 36px; line-height: 1.66; letter-spacing: 0.05em;
+    color: #222;
+  }
+
+  /* 中央：右向き矢印 */
+  .chevrons {
+    position: absolute; left: 1118px; top: 360px; width: 120px; height: 120px;
+  }
+
+  /* 右：QR */
+  .qr-card {
+    position: absolute; left: 1302px; top: 210px; width: 440px; height: 440px;
+    background: #fff; padding: 30px; border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(90,70,20,.18);
+  }
+  .qr-card img { display: block; width: 380px; height: 380px; image-rendering: pixelated; }
+  .scan {
+    position: absolute; left: 1182px; top: 676px; width: 680px;
+    text-align: center; font-weight: 700; font-size: 38px; line-height: 1.4;
+    color: var(--brown);
+  }
+
+  /* 吹き出し */
+  .bubble {
+    position: absolute; background: #fff; color: #222;
+    font-weight: 700; font-size: 34px; line-height: 1.25; text-align: center;
+    padding: 20px 30px; border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(90,70,20,.12);
+    white-space: nowrap;
+  }
+  .bubble::after {
+    content: ""; position: absolute; width: 0; height: 0;
+    border-style: solid;
+  }
+  .tail-down-r::after { right: 34px; bottom: -20px; border-width: 24px 0 0 26px; border-color: #fff transparent transparent transparent; }
+  .tail-down-l::after { left: 34px;  bottom: -20px; border-width: 24px 26px 0 0; border-color: #fff transparent transparent transparent; }
+  .tail-up-r::after   { right: 38px; top: -20px;    border-width: 0 0 24px 26px; border-color: transparent transparent #fff transparent; }
+  .tail-up-l::after   { left: 38px;  top: -20px;    border-width: 0 26px 24px 0; border-color: transparent transparent #fff transparent; }
+
+  .b1 { left: 1170px; top:  44px; transform: rotate(-4deg); }
+  .b2 { left: 1418px; top:  70px; transform: rotate(3deg); }
+  .b3 { left: 1650px; top:  36px; transform: rotate(-3deg); }
+  .b4 { left: 1176px; top: 800px; transform: rotate(4deg); }
+  .b5 { left: 1440px; top: 826px; transform: rotate(-3deg); }
+  .b6 { left: 1680px; top: 798px; transform: rotate(3deg); }
+
+  /* 下：医院名の帯 */
+  .footer {
+    position: absolute; left: 0; bottom: 0; width: 1920px; height: 118px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center; gap: 28px;
+  }
+  .footer img { height: 84px; }
+  .footer .clinic {
+    font-family: "Yu Mincho", "YuMincho", serif; font-weight: 500;
+    font-size: 50px; letter-spacing: 0.08em; color: #333;
+  }
+  @page { size: 1920px 1080px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="hero">
+    <h1 class="title">患者様の声を<br>募集しています</h1>
+  </div>
+
+  <p class="message">
+    当院で実際に治療を受けられた患者さまの<br>
+    率直なお声をいただきたいと思っております。<br>
+    このお声がサービス提供者である我々スタッフの<br>
+    何よりの力となり、今後の参考にもさせて頂きます。<br>
+    当院の感想、他の医院との違いなど何でも構いません。<br>
+    お気づきの点がありましたら、<br>
+    是非ともお声をお寄せください。
+  </p>
+
+  <svg class="chevrons" viewBox="0 0 120 120" aria-hidden="true">
+    <polyline points="18,14 62,60 18,106" fill="none" stroke="#6B3A0E" stroke-width="20"/>
+    <polyline points="62,14 106,60 62,106" fill="none" stroke="#6B3A0E" stroke-width="20"/>
+  </svg>
+
+  <div class="qr-card"><img src="assets/qr.svg" alt="QRコード"></div>
+  <div class="scan">スマートフォンのカメラで<br>読み取ってください</div>
+
+  <div class="bubble b1 tail-down-r">ありがとう！</div>
+  <div class="bubble b2 tail-down-l">優しかった</div>
+  <div class="bubble b3 tail-down-l">スタッフが<br>明るい</div>
+  <div class="bubble b4 tail-up-r">技術力が高い</div>
+  <div class="bubble b5 tail-up-l">丁寧だった！</div>
+  <div class="bubble b6 tail-up-l">助かりました</div>
+
+  <footer class="footer">
+    <img src="assets/logo.png" alt="">
+    <div class="clinic">大崎オーバルコート歯科・矯正歯科室</div>
+  </footer>
+</div>
+<script>
+function fit(){var w=innerWidth,h=innerHeight,k=Math.min(w/1920,h/1080);var e=document.getElementById("stage");e.style.transform="translate("+((w-1920*k)/2)+"px,"+((h-1080*k)/2)+"px) scale("+k+")";}
+addEventListener("resize",fit);fit();
+</script>
+</body>
+</html>
